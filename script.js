@@ -1,68 +1,69 @@
 //--------------------------------------------------
-// CONFIG — CHANGE THIS NUMBER TO ANY # OF DAYS
+// CONFIG
 //--------------------------------------------------
 const NUMBER_OF_DAYS = 3;
-// Example: set to 12 for 12 days, or 30 for 30 days
-//--------------------------------------------------
 
-
-// Generate the calendar boxes
-const calendar = document.getElementById("calendar");
-
-for (let day = 1; day <= NUMBER_OF_DAYS; day++) {
-    const box = document.createElement("div");
-    box.className = "day-box";
-    box.innerText = day;
-    box.onclick = () => {
-        window.location.href = `days/day${day}.html`;
-    };
-    calendar.appendChild(box);
-}
-
-// lock dates (YYYY-MM-DD)
+// Unlock dates for each day
 const unlockDates = {
     1: "2025-12-01",
     2: "2025-12-02",
     3: "2025-12-03"
 };
+
+// Unique box backgrounds for each day
+const boxImages = {
+    1: "assets/box1.png",
+    2: "assets/box2.png",
+    3: "assets/box3.png"
+};
 //--------------------------------------------------
 
+// Build calendar
+const calendar = document.getElementById("calendar");
 const today = new Date();
 
 for (let day = 1; day <= NUMBER_OF_DAYS; day++) {
+
     const box = document.createElement("div");
     box.className = "day-box";
+    box.style.backgroundImage = `url('${boxImages[day]}')`;
 
     const unlockDate = new Date(unlockDates[day]);
 
     if (today >= unlockDate) {
-        // unlocked
-        box.innerText = day;
+        // UNLOCKED
+        box.innerHTML = day;
         box.onclick = () => window.location.href = `days/day${day}.html`;
+
     } else {
-        // locked
-        box.innerHTML = `<span style="opacity:0.4;">${day} 🔒</span>`;
-        box.style.opacity = "0.4";
-        box.style.cursor = "not-allowed";
+        // LOCKED
+        box.classList.add("locked");
+        box.innerHTML = `${day} 🔒`;
+
+        box.onclick = () => {
+            alert(`This day unlocks on ${unlockDates[day]}!`);
+        };
     }
 
     calendar.appendChild(box);
 }
 
 
-// Snowflake generator
+//----------------------------------------------
+// Snowfall engine
+//----------------------------------------------
 function createSnowflake() {
-    const snow = document.createElement("div");
-    snow.className = "snowflake";
-    snow.innerHTML = "❄";
+    const flake = document.createElement("div");
+    flake.innerHTML = "❄";
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.animationDuration = (4 + Math.random() * 6) + "s";
+    flake.style.fontSize = (10 + Math.random() * 10) + "px";
 
-    snow.style.left = Math.random() * 100 + "vw";
-    snow.style.animationDuration = 3 + Math.random() * 5 + "s";
+    document.getElementById("snow").appendChild(flake);
 
-    document.body.appendChild(snow);
-
-    setTimeout(() => snow.remove(), 8000);
+    setTimeout(() => flake.remove(), 12000);
 }
 
-// Make snow fall every 150 ms
+// Make snow fall continuously
 setInterval(createSnowflake, 150);
+
