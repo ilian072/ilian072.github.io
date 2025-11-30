@@ -1,58 +1,71 @@
-/* Background + global styling (christmas theme and falling snowflakes)*/
+/* General Page Styling */
 body {
     margin: 0;
     padding: 40px;
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    background: linear-gradient(#b40000, #750000);
-    color: white;
+    font-family: 'Over the Rainbow', cursive;
+    background: #dfeaf2;
+    background-image: url("assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #0a2c3d;
     text-align: center;
 }
 
 /* Title */
 .title {
-    font-size: 3rem;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 8px #000;
+    font-size: 3.2rem;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    margin-bottom: 25px;
 }
 
-/* Calendar grid */
+/* Calendar Grid */
 .calendar {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 20px;
-    max-width: 900px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
-/* Each day box */
+/* Each Box */
 .day-box {
-    background: #fff;
-    color: #b40000;
-    border-radius: 14px;
-    padding: 30px 10px;
-    font-size: 2rem;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    background-size: cover;
+    background-position: center;
+    border-radius: 18px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+
+    transition: transform .25s ease, opacity .25s ease;
     cursor: pointer;
-    transition: transform .25s, background .25s;
 }
 
 .day-box:hover {
-    transform: scale(1.1);
-    background: #ffe6e6;
+    transform: scale(1.07);
 }
 
-/* Snowflakes */
-.snowflake {
+/* Locked day */
+.locked {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Snowflake styling */
+#snow > div {
     position: fixed;
     top: -10px;
     color: white;
-    font-size: 10px;
-    opacity: 0.8;
+    font-size: 12px;
     animation: fall linear infinite;
+    opacity: 0.9;
 }
 
 @keyframes fall {
     0% { transform: translateY(0) rotate(0deg); }
     100% { transform: translateY(100vh) rotate(360deg); }
 }
-
