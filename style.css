@@ -1,0 +1,58 @@
+/* Background + global styling (christmas theme and falling snowflakes)*/
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: linear-gradient(#b40000, #750000);
+    color: white;
+    text-align: center;
+}
+
+/* Title */
+.title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px #000;
+}
+
+/* Calendar grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Each day box */
+.day-box {
+    background: #fff;
+    color: #b40000;
+    border-radius: 14px;
+    padding: 30px 10px;
+    font-size: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform .25s, background .25s;
+}
+
+.day-box:hover {
+    transform: scale(1.1);
+    background: #ffe6e6;
+}
+
+/* Snowflakes */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: white;
+    font-size: 10px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
